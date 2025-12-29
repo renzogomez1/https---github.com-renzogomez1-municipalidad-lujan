@@ -1,0 +1,80 @@
+<section data-navbar="quehacer"
+  class="px-6 md:px-16 lg:px-24 xl:px-32 py-20">
+
+  <!-- HERO -->
+  <section class="relative w-full h-[60vh] md:h-[70vh]
+                  flex items-center justify-center overflow-hidden">
+
+    <div class="absolute inset-0 -z-10">
+      <img src="media/quehacer/fondoprincipal.jpg"
+           class="w-full h-full object-cover hero-zoom">
+    </div>
+
+    <div class="absolute inset-0 bg-black/50 -z-10"></div>
+
+    <div class="max-w-3xl mx-auto text-center px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 hero-title">
+        ¿Qué hacer en Luján?
+      </h1>
+      <p class="text-gray-200 text-lg md:text-xl hero-subtitle">
+        Actividades y experiencias para disfrutar tu visita
+      </p>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <div id="gridQueHacer"
+       class="pt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+  </div>
+
+</section>
+
+<!-- MODAL -->
+<div id="modalQueHacer"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center
+         bg-black/60 backdrop-blur-sm">
+
+  <div
+    class="relative bg-white w-[95%] max-w-5xl
+           rounded-2xl shadow-xl overflow-hidden
+           flex flex-col md:flex-row">
+
+    <!-- IMÁGENES -->
+    <div class="relative w-full md:w-1/2 h-56 md:h-auto bg-black">
+
+      <img id="qhCarouselImg"
+        class="w-full h-full object-cover transition-opacity duration-500">
+
+      <button id="qhPrev"
+        class="absolute left-3 top-1/2 -translate-y-1/2
+               bg-white/80 p-2 rounded-full">‹</button>
+
+      <button id="qhNext"
+        class="absolute right-3 top-1/2 -translate-y-1/2
+               bg-white/80 p-2 rounded-full">›</button>
+    </div>
+
+    <!-- INFO -->
+    <div class="w-full md:w-1/2 p-6 space-y-3">
+
+      <h2 id="qhTitulo" class="text-3xl font-bold text-gray-800"></h2>
+      <p id="qhCategoria" class="text-orange-600 font-semibold"></p>
+      <p id="qhDescripcion" class="text-gray-700"></p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+        <a id="qhMapa"
+          target="_blank"
+          class="bg-gray-800 text-white py-3 rounded-xl text-center font-semibold">
+          📍 Ver en el mapa
+        </a>
+        <button data-modal-close
+          class="bg-gray-200 py-3 rounded-xl font-semibold">
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <button data-modal-close
+      class="absolute top-2 right-3 text-3xl text-white">×</button>
+  </div>
+</div>

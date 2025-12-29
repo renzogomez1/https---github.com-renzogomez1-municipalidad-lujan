@@ -161,4 +161,26 @@
     animation: fadeIn 0.3s ease-out;
 }
 
+/* ===============================
+   RESPONSIVE MAPA (MOBILE)
+=============================== */
+@media (max-width: 1023px) {
 
+  #contenido-mapa {
+    grid-template-columns: 1fr;   /* una sola columna */
+    grid-template-rows: 1fr;      /* mapa ocupa todo */
+  }
+
+  #contenido-mapa > aside {
+    display: none !important;     /* panel desktop afuera */
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#panel-content.expanded {
+    max-height: 50vh !important;   /* antes 60vh */
+}

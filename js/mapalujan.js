@@ -13,6 +13,10 @@ let carruselFotos = [];
 let carruselLugar = null;
 let carruselMarker = null;
 
+document.getElementById("btnVolverInicio")?.addEventListener("click", () => {
+  window.location.href = "../";
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   // 1) Crear mapa
   map = L.map("map", { zoomControl: true }).setView([-32.3670843,-65.9423965], 14);
@@ -175,6 +179,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // 5) Fix Leaflet: si el contenedor cambia (responsive), recalcula tamaño
   setTimeout(() => map.invalidateSize(), 200);
   window.addEventListener("resize", () => setTimeout(() => map.invalidateSize(), 150));
+
+    panelHeader.addEventListener("click", () => {
+      panelContent.classList.toggle("expanded");
+      flechaMobile.textContent =
+        panelContent.classList.contains("expanded") ? "▼" : "▲";
+
+        setTimeout(() => map.invalidateSize(), 300);
+    });
 });
 
 /* ============================================================

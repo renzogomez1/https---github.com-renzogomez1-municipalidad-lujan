@@ -76,6 +76,10 @@ function cargarVista(url) {
       window.initAlojamientos();
     }
 
+    if(url.includes("quehacer.html") && typeof window.initQueHacer === "function") {
+      window.initQueHacer();
+    }
+
     //Scroll arriba
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -172,7 +176,6 @@ function initHistoria() {
 ============================================================ */
 
 function initGastronomicos() {
-  console.log("Vista Gastronomía cargada ✔");
 
   renderGastronomicos();
   initFadeScroll();
@@ -181,9 +184,15 @@ function initGastronomicos() {
 }
 
 function initAlojamientos() {
-  console.log("Vista Alojamientos cargada ✔");
-
   renderAlojamientos();
+  initFadeScroll();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function initQueHacer() {
+  renderQueHacer();
+
   initFadeScroll();
 
   window.scrollTo({ top: 0, behavior: "smooth" });
