@@ -1,0 +1,164 @@
+/* CONTENEDOR GENERAL BAJO NAVBAR */
+#contenido-mapa {
+    margin-top: 70px;               
+    height: calc(100vh - 70px);    
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+/* PANEL + MAPA MISMA ALTURA */
+#contenido-mapa > aside,
+#contenido-mapa > #map {
+    height: 100%;
+}
+
+/* MAPA */
+#map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 5 !important;
+}
+
+/* NAVBAR SIEMPRE ARRIBA */
+#navbar {
+    z-index: 9999 !important;
+    background: white;
+}
+
+/* Leaflet debajo de navbar */
+.leaflet-container {
+    z-index: 5 !important;
+}
+
+/* Hover panel */
+.lugar-item:hover {
+    background: #fdecd5;
+    cursor: pointer;
+}
+
+/* Estética del popup */
+.leaflet-popup-content-wrapper {
+    border-radius: 15px !important;
+    padding: 10px !important;
+}
+
+/* MOBILE MENU FIXES */
+#menuMobile {
+    pointer-events: none;
+    z-index: 99999 !important;
+}
+
+#menuPanel {
+    pointer-events: auto;
+}
+
+#menuMobile.hidden {
+    pointer-events: none !important;
+}
+
+/* ===============================
+   NAVBAR MAPA – ANIMACIÓN ENTRADA
+=============================== */
+
+@keyframes navbarSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-navbar-in {
+  animation: navbarSlideDown 0.6s ease-out forwards;
+}
+
+
+
+/* parte mobile */
+
+/* PANEL MOBILE ESTILO APP */
+#panel-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* Header tocable */
+#panel-header {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Expandido */
+#panel-content.expanded {
+    max-height: 60vh !important;
+    overflow-y: auto;
+}
+
+/* Lista mobile */
+.lugar-item-mobile {
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lugar-item-mobile:hover {
+    background: #fdecd5;
+}
+
+/* Botón de tu ubicación */
+#btn-ubicacion {
+    position: fixed;
+    bottom: 85px;
+    right: 15px;
+    z-index: 99999;
+    background: white;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Submenús desktop */
+#listaZonas .expanded {
+    max-height: 500px !important;
+}
+
+/* Mobile */
+#listaZonasMobile .expanded {
+    max-height: 500px !important;
+}
+
+.lugar-item-mobile {
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lugar-item-mobile:hover {
+    background: #fdecd5;
+}
+
+/* modal */
+
+/* Animación modal */
+@keyframes fadeIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+}
+
+

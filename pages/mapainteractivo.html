@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Turístico - Luján, San Luis</title>
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="../css/mapa.css">
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- NAVBAR -->
+    <nav id="navbarMapa"
+        class="fixed top-0 left-0 w-full h-[70px] z-[1000]
+                px-6 md:px-16 lg:px-24 xl:px-32
+                flex items-center justify-between
+                bg-white shadow-md
+                transition-all duration-500 ease-out
+                animate-navbar-in">
+
+        <!-- Logo -->
+        <img src="../media/logomuni2.png"
+            class="h-14 md:h-16 object-contain
+                    transition-transform duration-300 ease-out
+                    hover:scale-105">
+
+        <!-- VOLVER AL SITIO -->
+        <a href="../Index.html"
+            class="group flex items-center gap-2
+                    bg-[#E09541] text-white px-5 py-2 rounded-lg
+                    font-semibold shadow-md
+                    transition-all duration-300 ease-out
+                    hover:bg-[#c57c2a] hover:shadow-xl
+                    hover:-translate-y-[1px]
+                    active:translate-y-0 active:scale-95">
+
+            <span class="transition-transform duration-300 group-hover:-translate-x-1">
+            ←
+            </span>
+            <span>Volver al sitio</span>
+        </a>
+    </nav>
+
+
+    <!-- CONTENEDOR GENERAL MAPA + PANEL -->
+    <div id="contenido-mapa">
+        <!-- PANEL MOBILE (solo visible en pantallas pequeñas) -->
+        <div id="panel-mobile" class="lg:hidden">
+
+            <div id="panel-header" class="bg-white shadow-lg p-4 rounded-t-2xl flex justify-between items-center cursor-pointer">
+                <h5 class="text-lg font-bold text-gray-800">Lugares Turísticos</h5>
+                <span id="flechaMobile" class="text-xl">▲</span>
+            </div>
+
+            <div id="panel-content" class="bg-white shadow-xl max-h-0 overflow-hidden transition-all duration-300">
+                <div id="listaZonasMobile" class="p-4 space-y-3"></div>
+            </div>
+
+        </div>
+
+        <!-- PANEL IZQUIERDO -->
+        <aside class="p-6 bg-white shadow-xl overflow-y-auto">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mapa Turístico de Luján</h2>
+
+            <p class="text-gray-600 mb-4">
+                Seleccioná una categoría o tocá un marcador en el mapa.
+            </p>
+
+            <div id="listaZonas" class="space-y-2"></div>
+        </aside>
+
+        <!-- MAPA -->
+        <div id="map"></div>
+
+        <!-- modal de informacion -->
+        <div id="modalInfo" 
+            class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden justify-center items-center z-[9999]">
+
+            <div class="bg-white w-[90%] max-w-md rounded-2xl shadow-xl overflow-hidden animate-fadeIn">
+
+                <img id="modalImg" class="w-full h-48 object-cover">
+
+                <div class="p-5 space-y-3">
+                    <h2 id="modalTitulo" class="text-2xl font-bold text-gray-800"></h2>
+                    <p id="modalCategoria" class="text-sm text-gray-500"></p>
+                    <p id="modalDesc" class="text-gray-700"></p>
+
+                    <button id="btnIrMapaModal"
+                        class="w-full bg-[#E09541] text-white font-bold py-2 rounded-lg hover:bg-[#c57c2a] transition">
+                        Ver ubicación en el mapa
+                    </button>
+                </div>
+                <button id="btnVerMas"
+                        class="w-full bg-gray-800 text-white font-bold py-2 rounded-lg hover:bg-black transition mt-2">
+                    Ver más información
+                </button>
+                <button id="cerrarModal"
+                    class="absolute top-2 right-3 text-3xl text-white">
+                    ×
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Scripts -->
+    <script src="../js/mapalujan.js"></script>
+
+</body>
+</html>

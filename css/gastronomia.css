@@ -1,0 +1,65 @@
+/* ===============================
+   HERO GASTRONOMÍA
+=============================== */
+
+/* Zoom suave del fondo */
+@keyframes heroZoom {
+  0% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.hero-zoom {
+  animation: heroZoom 12s ease-out forwards;
+}
+
+/* Texto hero */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  animation: heroFadeUp 1s ease-out forwards;
+}
+
+.hero-subtitle {
+  animation: heroFadeUp 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+/* ===============================
+   CARDS GASTRONÓMICAS
+=============================== */
+
+.gastro-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gastro-card:hover {
+  transform: translateY(-6px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out forwards;
+}

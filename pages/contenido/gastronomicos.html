@@ -1,0 +1,176 @@
+<section data-navbar="gastronomicos"
+  class="px-6 md:px-16 lg:px-24 xl:px-32 py-20">
+
+  <!-- HERO -->
+  <section
+    class="relative w-full h-[60vh] md:h-[70vh]
+           flex items-center justify-center overflow-hidden">
+
+    <!-- IMAGEN -->
+    <div class="absolute inset-0 -z-10">
+      <img src="media/gastronomia/fondoprincipal.jpg"
+        alt="Gastronomía en Luján"
+        class="w-full h-full object-cover hero-zoom">
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="absolute inset-0 bg-black/50 -z-10"></div>
+
+    <!-- TEXTO -->
+    <div class="max-w-3xl mx-auto text-center px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 hero-title">
+        Gastronomía
+      </h1>
+      <p class="text-gray-200 text-lg md:text-xl hero-subtitle">
+        Descubrí los sabores y lugares para disfrutar en Luján
+      </p>
+    </div>
+  </section>
+
+  <h2 class="section-title pt-10">
+    <span></span>
+  </h2>
+
+  <!-- GRID (JS) -->
+  <div id="gridGastronomicos"
+    class="pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+  </div>
+
+</section>
+
+<!-- =========================
+     MODAL GASTRONÓMICO
+========================= -->
+<div id="modalGastro"
+    class="fixed inset-0 z-[9999] hidden items-center justify-center
+          bg-black/60 backdrop-blur-sm">
+
+    <div
+      class="
+        relative bg-white w-[95%] max-w-5xl rounded-2xl shadow-xl 
+        overflow-hidden flex flex-col md:flex-row">
+
+      <!-- COLUMNA IMAGEN -->
+      <div
+        class="
+          relative bg-black w-full md:w-1/2 h-56 sm:h-72 md:h-auto flex-shrink-0">
+
+        <img id="carouselImg"
+          class="w-full h-full object-cover transition-opacity duration-500" />
+
+        <!-- Flechas -->
+        <button id="carouselPrev"
+          class="absolute left-3 top-1/2 -translate-y-1/2
+                bg-white/80 hover:bg-white
+                p-2 rounded-full shadow">
+          ‹
+        </button>
+
+        <button id="carouselNext"
+          class="absolute right-3 top-1/2 -translate-y-1/2
+                bg-white/80 hover:bg-white
+                p-2 rounded-full shadow">
+          ›
+        </button>
+
+        <!-- Botón galería -->
+        <button id="btnGaleriaCompleta"
+          class="absolute top-3 right-3 z-20
+                bg-black/70 text-white px-4 py-2 rounded-lg
+                text-sm font-semibold backdrop-blur
+                hover:bg-black/90 transition">
+          Ver galería completa
+        </button>
+      </div>
+
+      <!-- COLUMNA INFO -->
+      <div
+        class="
+          w-full md:w-1/2 p-5 sm:p-6 space-y-3 flex flex-col">
+        <h2 id="modalTitulo"
+          class="text-2xl sm:text-3xl font-bold text-gray-800 leading-tight">
+        </h2>
+
+        <p id="modalTipo"
+          class="text-orange-600 font-semibold">
+        </p>
+
+        <p id="modalDireccion"
+          class="text-gray-600">
+        </p>
+
+        <p id="modalHorario"
+          class="text-gray-600">
+        </p>
+
+        <p id="modalDescripcion"
+          class="text-gray-700 text-sm sm:text-base leading-relaxed">
+        </p>
+
+        <p id="modalTelefono"
+          class="text-gray-600">
+        </p>
+
+        <!-- SERVICIOS -->
+        <div id="modalServicios"
+          class="flex flex-wrap gap-2 pt-2">
+        </div>
+
+        <!-- BOTONES -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 mt-auto">
+
+          <a id="modalMapa" target="_blank"
+            class="flex items-center justify-center gap-2
+                  bg-gray-800 text-white py-3 rounded-xl
+                  font-semibold hover:bg-black transition">
+            📍 Ver mapa
+          </a>
+
+          <a id="modalWhatsapp" target="_blank"
+            class="flex items-center justify-center gap-2
+                  bg-[#25D366] text-white py-3 rounded-xl
+                  font-semibold hover:bg-[#1ebe57] transition">
+            💬 WhatsApp
+          </a>
+
+        </div>
+      </div>
+
+      <!-- CERRAR -->
+      <button data-modal-close
+        class="absolute top-2 right-3 text-3xl text-white drop-shadow">
+        ×
+      </button>
+
+    </div>
+</div>
+
+
+<!-- =========================
+     GALERÍA COMPLETA
+========================= -->
+<div id="galeriaCompleta"
+  class="fixed inset-0 z-[9999] hidden
+         bg-black/90 overflow-y-auto p-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-white text-2xl font-bold">
+        Galería
+      </h3>
+
+      <button id="cerrarGaleria"
+        class="text-white text-4xl leading-none">
+        ×
+      </button>
+    </div>
+
+    <div id="galeriaGrid"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    </div>
+
+  </div>
+</div>
+
+

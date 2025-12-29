@@ -1,0 +1,185 @@
+<div class="w-full">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-semibold text-gray-700">Eventos</h2>
+
+        <button id="btnAbrirModalEvento"
+                class="bg-white text-gray-700 border border-gray-300 text-sm 
+                    hover:bg-gray-100 active:scale-95 transition 
+                    rounded-lg px-4 h-11">
+            Agregar evento
+        </button>
+    </div>
+
+    <!-- Buscador -->
+    <div class="relative mb-6">
+        <input type="text" id="buscadorEventos" placeholder="Buscar evento..."
+               class="w-full border border-gray-300 rounded-lg px-10 py-2
+                      focus:outline-none focus:ring-2 focus:ring-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             class="w-5 h-5 absolute left-3 top-2.5 text-gray-500"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+        </svg>
+    </div>
+
+    <!-- LISTA DE EVENTOS -->
+    <div class="space-y-4" id="listaEventos">
+
+    </div>
+</div>
+
+<!-- MODAL AGREGAR EVENTO -->
+<div id="modalEvento"
+     class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center 
+            z-50 hidden opacity-0 transition-opacity duration-300">
+
+    <div class="bg-white w-[90%] max-w-xl rounded-2xl shadow-xl p-6 scale-90 
+                opacity-0 transition-all duration-300" id="modalContenido">
+
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">
+            Agregar nuevo evento
+        </h2>
+
+        <!-- FORMULARIO -->
+        <form id="formEvento" class="space-y-4">
+
+            <div>
+                <label class="text-sm text-gray-700">Título del evento</label>
+                <input type="text" name="nombreEvento"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2">
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-700">Descripción</label>
+                <textarea name="descripcion" rows="3"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-700">Fecha de realización</label>
+                <input type="date" name="fechaRealizacion"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2">
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-700">Estado</label>
+                <select name="estado"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button type="button" id="btnCancelar"
+                        class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700">
+                    Cancelar
+                </button>
+
+                <button type="submit"
+                        class="px-5 py-2 rounded-lg bg-orange-600 text-white"
+                        onclick="listarEventos()">
+                    Guardar evento
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<!-- MODAL ELIMINAR -->
+<div id="modalEliminar"
+    class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300
+           flex items-center justify-center z-50">
+
+    <div id="modalEliminarCont"
+        class="bg-white rounded-2xl shadow-xl p-6 w-[90%] max-w-md opacity-0 scale-90 
+               transition-all duration-300">
+
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            ¿Eliminar evento?
+        </h2>
+
+        <p class="text-gray-600 mb-6">
+            Esta acción no se puede deshacer. ¿Seguro que deseas continuar?
+        </p>
+
+        <div class="flex justify-end gap-3">
+            <button id="btnCerrarEliminar"
+                    class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg
+                           hover:bg-gray-100 active:scale-95 transition">
+                Cancelar
+            </button>
+
+            <button id="btnConfirmarEliminar"
+                    class="px-5 py-2 bg-red-600 text-white rounded-lg 
+                           hover:bg-red-700 active:scale-95 transition">
+                Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL VER / EDITAR DETALLES -->
+<div id="modalDetalles"
+     class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden opacity-0 z-50
+            flex items-center justify-center transition-opacity duration-300">
+
+    <div id="modalDetallesCont"
+         class="bg-white w-[90%] max-w-xl rounded-2xl shadow-xl p-6 scale-90
+                opacity-0 transition-all duration-300">
+
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">
+            Detalles del evento
+        </h2>
+
+        <form id="formEditarEvento" class="space-y-4">
+
+            <input type="hidden" name="idEventos" id="edit_id">
+
+            <div>
+                <label class="text-sm text-gray-700">Título</label>
+                <input type="text" name="nombreEvento" id="edit_nombre"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2">
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-700">Descripción</label>
+                <textarea name="descripcion" id="edit_descripcion" rows="3"
+                          class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-700">Fecha</label>
+                <input type="date" name="fechaRealizacion" id="edit_fecha"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2">
+            </div>
+
+            <div>
+                <label class="text-sm text-gray-700">Estado</label>
+                <select name="estado" id="edit_estado"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+                <button type="button" id="btnCerrarDetalles"
+                        class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700">
+                    Cerrar
+                </button>
+                <button type="submit"
+                        class="px-5 py-2 rounded-lg bg-blue-600 text-white">
+                    Guardar cambios
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
