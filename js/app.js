@@ -80,6 +80,10 @@ function cargarVista(url) {
       window.initQueHacer();
     }
 
+    if(url.includes("plazas.html") && typeof window.initPlazas === "function") {
+      window.initPlazas();
+    }
+
     //Scroll arriba
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -192,6 +196,14 @@ function initAlojamientos() {
 
 function initQueHacer() {
   renderQueHacer();
+
+  initFadeScroll();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function initPlazas() {
+  renderPlazas();
 
   initFadeScroll();
 

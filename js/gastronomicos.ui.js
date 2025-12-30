@@ -17,7 +17,7 @@ function renderGastronomicos() {
 
     card.innerHTML = `
       <div class="h-56 overflow-hidden">
-        <img src="${gastro.imagen}"
+        <img src="${gastro.fotos[0]}"
              alt="${gastro.nombre}"
              class="w-full h-full object-cover
                     hover:scale-110 transition duration-700">

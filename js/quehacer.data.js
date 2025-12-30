@@ -8,7 +8,8 @@ window.QUE_HACER = [
     fotos: [
       "media/quehacer/rio/1.jpg",
       "media/quehacer/rio/2.jpg"
-    ]
+    ],
+    url: "pages/contenido/quehacer/rio-lujan.html"
   },
   {
     id: "plazas",
@@ -19,7 +20,8 @@ window.QUE_HACER = [
     fotos: [
       "media/quehacer/plazas/1.jpg",
       "media/quehacer/plazas/2.jpg"
-    ]
+    ],
+    url: "pages/contenido/quehacer/plazas.html"
   },
   {
     id: "eventos",
