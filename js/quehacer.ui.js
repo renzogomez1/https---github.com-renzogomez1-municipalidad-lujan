@@ -26,7 +26,7 @@ function renderQueHacer() {
         <h3 class="text-2xl font-bold text-gray-800">${item.titulo}</h3>
         <p class="text-sm text-gray-600">${item.descripcion}</p>
 
-        <button data-qh-id="${item.id}" data-vista="pages/contenido/quehacer/rio-lujan.html"
+        <button data-qh-id="${item.id}" data-vista="${item.url}"
           class="mt-4 inline-flex items-center gap-1
                  text-orange-600 font-semibold
                  hover:text-orange-800 transition">

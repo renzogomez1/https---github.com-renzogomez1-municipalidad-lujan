@@ -1,12 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // Componentes fijos
   includeHTML("navbar", "componentes/navbar.html");
   includeHTML("footer", "componentes/footer.html");
 
-  //Cargar última vista o Inicio
-  const vistaGuardada = localStorage.getItem("vistaActual") || "pages/inicio.html";
-  cargarVista(vistaGuardada);
+  // 👉 recuperar vista guardada con vencimiento
+  const vistaGuardada = obtenerVistaConTiempo(30); // minutos
 
+  if (vistaGuardada) {
+    cargarVista(vistaGuardada);
+  } else {
+    cargarVista("pages/inicio.html");
+  }
+
+  // Delegación global AJAX
   document.addEventListener("click", (e) => {
     const link = e.target.closest("[data-vista]");
     if (!link) return;
@@ -17,16 +24,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const vista = link.getAttribute("data-vista");
     if (!vista) return;
 
-    //Guardar vista actual
-    localStorage.setItem("vistaActual", vista);
-
     cargarVista(vista);
   }, true);
 
 });
 
 /* ============================================================
-   CARGA DE VISTAS
+   LOCALSTORAGE CON TIEMPO LÍMITE
+============================================================ */
+
+function guardarVistaConTiempo(vista) {
+  const data = {
+    vista,
+    timestamp: Date.now()
+  };
+  localStorage.setItem("vistaActual", JSON.stringify(data));
+}
+
+function obtenerVistaConTiempo(maxMinutos = 30) {
+  const data = localStorage.getItem("vistaActual");
+  if (!data) return null;
+
+  try {
+    const { vista, timestamp } = JSON.parse(data);
+
+    const ahora = Date.now();
+    const diferencia = ahora - timestamp;
+    const limite = maxMinutos * 60 * 1000;
+
+    if (diferencia > limite) {
+      localStorage.removeItem("vistaActual");
+      return null;
+    }
+
+    return vista;
+  } catch (e) {
+    localStorage.removeItem("vistaActual");
+    return null;
+  }
+}
+
+/* ============================================================
+   CARGA DE VISTAS AJAX
 ============================================================ */
 
 function cargarVista(url) {
@@ -45,21 +84,21 @@ function cargarVista(url) {
       return;
     }
 
-    //Insertar HTML
+    // Insertar HTML
     contenido.innerHTML = xhr.responseText;
 
-    //Ejecutar scripts
+    // Ejecutar scripts embebidos
     ejecutarScripts(contenido);
 
-    //Animaciones
+    // Animaciones
     initFadeScroll();
 
-    // 4️⃣ Navbar por sección
+    // Navbar por sección
     if (typeof window.aplicarNavbarPorSeccion === "function") {
       window.aplicarNavbarPorSeccion();
     }
 
-    // 5️⃣ Init por vista
+    // Inits por vista
     if (url.includes("inicio.html") && typeof window.initInicio === "function") {
       window.initInicio();
     }
@@ -72,16 +111,23 @@ function cargarVista(url) {
       window.initGastronomicos();
     }
 
-    if(url.includes("alojamientos.html") && typeof window.initAlojamientos === "function") {
+    if (url.includes("alojamientos.html") && typeof window.initAlojamientos === "function") {
       window.initAlojamientos();
     }
 
-    if(url.includes("quehacer.html") && typeof window.initQueHacer === "function") {
+    if (url.includes("quehacer.html") && typeof window.initQueHacer === "function") {
       window.initQueHacer();
     }
 
-    //Scroll arriba
+    if (url.includes("plazas.html") && typeof window.initPlazas === "function") {
+      window.initPlazas();
+    }
+
+    // Scroll arriba
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Guardar vista con tiempo
+    guardarVistaConTiempo(url);
   };
 
   xhr.onerror = () => {
@@ -95,7 +141,7 @@ function cargarVista(url) {
 }
 
 /* ============================================================
-   INCLUDE HTML
+   INCLUDE HTML (navbar / footer)
 ============================================================ */
 
 function includeHTML(id, file) {
@@ -120,19 +166,21 @@ function includeHTML(id, file) {
 }
 
 /* ============================================================
-   EJECUTAR SCRIPTS
+   EJECUTAR SCRIPTS DINÁMICOS
 ============================================================ */
 
 function ejecutarScripts(element) {
   const scripts = element.querySelectorAll("script");
   scripts.forEach(oldScript => {
     const s = document.createElement("script");
+
     if (oldScript.src) {
       s.src = oldScript.src;
       s.defer = true;
     } else {
       s.textContent = oldScript.textContent;
     }
+
     document.body.appendChild(s);
     oldScript.remove();
   });
@@ -163,7 +211,7 @@ function initFadeScroll() {
 }
 
 /* ============================================================
-   HISTORIA
+   INITS POR SECCIÓN
 ============================================================ */
 
 function initHistoria() {
@@ -171,29 +219,22 @@ function initHistoria() {
   initGaleriaLujan();
 }
 
-/* ============================================================
-   GASTRONÓMICOS
-============================================================ */
-
 function initGastronomicos() {
-
   renderGastronomicos();
   initFadeScroll();
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function initAlojamientos() {
   renderAlojamientos();
   initFadeScroll();
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function initQueHacer() {
   renderQueHacer();
-
   initFadeScroll();
+}
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+function initPlazas() {
+  renderPlazas();
+  initFadeScroll();
 }

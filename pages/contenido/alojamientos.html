@@ -48,65 +48,75 @@
 
     <div
       class="
-        relative bg-white w-[95%] max-w-5xl
+        relative bg-white
+        w-[94vw] max-w-5xl
+        h-[92svh] max-h-[720px]
         rounded-2xl shadow-xl overflow-hidden
-        flex flex-col md:flex-row
-      "
-    >
+        flex flex-col md:flex-row">
 
       <!-- COLUMNA IMAGEN -->
-      <div
-        class="relative bg-black w-full md:w-1/2 h-56 sm:h-72 md:h-auto flex-shrink-0">
+      <div class="relative bg-black w-full md:w-1/2 h-[38svh] md:h-full">
 
-        <img id="carouselImg"
-          class="w-full h-full object-cover transition-opacity duration-500" />
+      <img id="carouselImg"
+        class="w-full h-full object-cover transition-opacity duration-500" />
 
-        <!-- Flechas -->
-        <button id="carouselPrev"
-          class="absolute left-3 top-1/2 -translate-y-1/2
-                bg-white/80 hover:bg-white
-                p-2 rounded-full shadow">
-          ‹
-        </button>
+      <!-- Flecha izquierda -->
+      <button id="carouselPrev"
+        class="absolute left-3 top-1/2 -translate-y-1/2
+              bg-white/80 hover:bg-white
+              p-2 rounded-full shadow z-10">
+        ‹
+      </button>
 
-        <button id="carouselNext"
-          class="absolute right-3 top-1/2 -translate-y-1/2
-                bg-white/80 hover:bg-white
-                p-2 rounded-full shadow">
-          ›
-        </button>
+      <!-- Flecha derecha -->
+      <button id="carouselNext"
+        class="absolute right-3 top-1/2 -translate-y-1/2
+              bg-white/80 hover:bg-white
+              p-2 rounded-full shadow z-10">
+        ›
+      </button>
 
-        <!-- Botón galería -->
-        <button id="btnGaleriaCompleta"
-          class="absolute top-3 right-3 z-20
-                bg-black/70 text-white px-4 py-2 rounded-lg
-                text-sm font-semibold backdrop-blur
-                hover:bg-black/90 transition">
-          Ver galería completa
-        </button>
-      </div>
+      <!-- BOTÓN GALERÍA (abajo derecha) -->
+      <button id="btnGaleriaCompleta"
+        class="absolute bottom-3 right-3 z-20
+              bg-black/70 text-white px-4 py-2 rounded-lg
+              text-sm font-semibold backdrop-blur
+              hover:bg-black/90 transition">
+        Ver galería completa
+      </button>
+
+      <!-- BOTÓN CERRAR (arriba derecha, separado) -->
+      <button data-modal-close
+        class="absolute top-3 right-3 z-30
+              w-9 h-9 flex items-center justify-center
+              bg-black/60 text-white rounded-full
+              text-xl hover:bg-black transition md:hidden">
+        ×
+      </button>
+    </div>
 
       <!-- COLUMNA INFO -->
       <div
-        class="w-full md:w-1/2 p-5 sm:p-6 space-y-3 flex flex-col">
+        class="w-full md:w-1/2 p-3 md:p-6 flex flex-col gap-3 overflow-hidden">
         <h2 id="modalTitulo"
-          class="text-2xl sm:text-3xl font-bold text-gray-800 leading-tight">
+          class="text-xl sm:text-3xl font-bold text-gray-800 leading-tight">
         </h2>
 
         <p id="modalTipo"
-          class="text-orange-600 font-semibold">
+          class="text-sm md:text-base text-orange-600 font-semibold">
         </p>
 
         <p id="modalDireccion"
-          class="text-gray-600">
+          class="text-sm md:text-base text-gray-600">
         </p>
 
         <p id="modalDescripcion"
-          class="text-gray-700 text-sm sm:text-base leading-relaxed">
+          class="text-xs md:text-base text-gray-700 leading-relaxed
+               overflow-y-auto max-h-[18vh] md:max-h-none pr-1">
         </p>
 
         <p id="modalTelefono"
-          class="text-gray-600">
+          class="text-sm md:text-base text-gray-600">
         </p>
 
         <!-- SERVICIOS -->
@@ -115,35 +125,41 @@
         </div>
 
         <!-- BOTONES -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 mt-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 mt-auto">
 
-          <a id="modalMapa" target="_blank"
-            class="flex items-center justify-center gap-2
-                  bg-gray-800 text-white py-3 rounded-xl
-                  font-semibold hover:bg-black transition">
-            📍 Ver mapa
-          </a>
+        <a id="modalMapa" target="_blank"
+          class="flex items-center justify-center gap-2
+                 bg-gray-800 text-white
+                 py-2 md:py-3
+                 rounded-lg md:rounded-xl
+                 text-sm md:text-base
+                 font-semibold hover:bg-black transition">
+          Ver mapa
+        </a>
 
-          <a id="modalWhatsapp" target="_blank"
-            class="flex items-center justify-center gap-2
-                  bg-[#25D366] text-white py-3 rounded-xl
-                  font-semibold hover:bg-[#1ebe57] transition">
-            💬 WhatsApp
-          </a>
+        <a id="modalWhatsapp" target="_blank"
+          class="flex items-center justify-center gap-2
+                 bg-[#25D366] text-white
+                 py-2 md:py-3
+                 rounded-lg md:rounded-xl
+                 text-sm md:text-base
+                 font-semibold hover:bg-[#1ebe57] transition">
+          WhatsApp
+        </a>
 
-        </div>
       </div>
+    </div>
 
       <!-- CERRAR -->
       <button data-modal-close
-        class="absolute top-2 right-3
-              text-3xl text-white drop-shadow">
+        class="absolute top-3 right-3 z-30
+              w-9 h-9 flex items-center justify-center
+              bg-black/60 text-white rounded-full
+              text-xl hover:bg-black transition hidden md:block">
         ×
       </button>
-
     </div>
 </div>
-
 
 <!-- =========================
      GALERÍA COMPLETA
