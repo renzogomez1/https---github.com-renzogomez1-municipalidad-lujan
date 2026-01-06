@@ -1,0 +1,52 @@
+/* =========================
+   HERO ANIMATIONS
+========================= */
+.hero-zoom {
+  animation: heroZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-title {
+  animation: fadeUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.hero-subtitle {
+  animation: fadeUp 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* =========================
+   FADE SCROLL
+========================= */
+.fade-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease;
+}
+
+.fade-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* =========================
+   MAP ANIMATION
+========================= */
+.map-anim {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: all 1s ease;
+}
+
+.map-anim.visible {
+  opacity: 1;
+  transform: scale(1);
+}

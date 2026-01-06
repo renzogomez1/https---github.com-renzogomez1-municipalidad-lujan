@@ -4,10 +4,9 @@ window.QUE_HACER = [
     titulo: "Disfrutar el Río Luján",
     categoria: "Naturaleza",
     descripcion: "Caminatas, mate y relax a orillas del río.",
-    mapa: "https://maps.google.com",
+    mapa: "https://maps.app.goo.gl/aDC7w4PsikM5tNcE9",
     fotos: [
-      "media/quehacer/rio/1.jpg",
-      "media/quehacer/rio/2.jpg"
+      "media/quehacer/rio/riolujan2.jpg",
     ],
     url: "pages/contenido/quehacer/rio-lujan.html"
   },
@@ -18,8 +17,7 @@ window.QUE_HACER = [
     descripcion: "Espacios verdes ideales para descansar.",
     mapa: "https://maps.google.com",
     fotos: [
-      "media/quehacer/plazas/1.jpg",
-      "media/quehacer/plazas/2.jpg"
+      "media/quehacer/plazas/principal2.png"
     ],
     url: "pages/contenido/quehacer/plazas.html"
   },

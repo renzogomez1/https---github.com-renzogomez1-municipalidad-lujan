@@ -116,8 +116,8 @@ p {
 
 /* con scroll */
 #navbarMain.navbar-scrolled {
-  background-color: rgba(255,255,255,.95);
-  backdrop-filter: blur(10px);
+  background-color: rgba(219, 123, 15, 0.19);
+  backdrop-filter: blur(8px);
   box-shadow: 0 4px 20px rgba(0,0,0,.08);
 }
 

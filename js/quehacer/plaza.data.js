@@ -22,8 +22,11 @@ window.PLAZAS = [
       para vecinos y visitantes.
     `,
     fotos: [
-      "media/plazas/sanmartin/1.jpg",
-      "media/plazas/sanmartin/2.jpg"
+      "media/quehacer/plazas/sm1.png",
+      "media/quehacer/plazas/sm2.png",
+      "media/quehacer/plazas/sm3.png",
+      "media/quehacer/plazas/sm4.png",
+      "media/quehacer/plazas/sm5.png"
     ]
   }
 ];

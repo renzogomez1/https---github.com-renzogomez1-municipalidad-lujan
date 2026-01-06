@@ -122,6 +122,9 @@ function cargarVista(url) {
     if (url.includes("plazas.html") && typeof window.initPlazas === "function") {
       window.initPlazas();
     }
+    if(url.includes("comollegar.html") && typeof window.initComoLlegar === "function") {
+      initFadeScroll();
+    }
 
     // Scroll arriba
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -215,8 +218,8 @@ function initFadeScroll() {
 ============================================================ */
 
 function initHistoria() {
-  initFadeScroll();
   initGaleriaLujan();
+  initFadeScroll();
 }
 
 function initGastronomicos() {

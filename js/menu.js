@@ -1,7 +1,7 @@
 // ===== Config por sección =====
 const NAVBAR_CONFIG = {
   inicio: { transparent: true, hideOnScroll: true },
-  historia: { transparent: false, hideOnScroll: false },
+  historia: { transparent: false, hideOnScroll: true},
   default: { transparent: false, hideOnScroll: true }
 };
 

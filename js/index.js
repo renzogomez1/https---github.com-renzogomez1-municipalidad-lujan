@@ -1,4 +1,12 @@
 function initInicio() {
+
+    // ============================================================
+    //  RENDER ACTIVIDADES DESDE QUE_HACER (CLAVE)
+    // ============================================================
+    renderActividadesInicio();
+    initFadeScroll();
+
+
     // ============================================================
     //  NAVBAR SCROLL EFFECT
     // ============================================================
@@ -28,27 +36,6 @@ function initInicio() {
 
 
     // ============================================================
-    //  FADE-SCROLL
-    // ============================================================
-    const elementos = document.querySelectorAll(".fade-scroll");
-
-    if (!("IntersectionObserver" in window)) {
-        elementos.forEach(el => el.classList.add("show"));
-    } else {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        elementos.forEach(el => observer.observe(el));
-    }
-
-
-    // ============================================================
     //  CARRUSEL "ACTIVIDADES Y EXPERIENCIAS"
     // ============================================================
     const carrusel = document.getElementById("carouselActividades");
@@ -56,7 +43,7 @@ function initInicio() {
     const btnPrev = document.getElementById("btnPrev");
     const indicatorsContainer = document.getElementById("carouselIndicators");
 
-    if (carrusel) {
+    if (carrusel && carrusel.children.length > 0) {
 
         const cards = carrusel.children;
         const totalCards = cards.length;
@@ -65,6 +52,8 @@ function initInicio() {
         let currentIndex = 0;
         let autoplayInterval = null;
         const autoplayTime = 4000;
+
+        indicatorsContainer.innerHTML = "";
 
         function createIndicators() {
             for (let i = 0; i < totalCards; i++) {
@@ -81,8 +70,8 @@ function initInicio() {
                 indicatorsContainer.appendChild(bullet);
             }
         }
-        createIndicators();
 
+        createIndicators();
         const bullets = indicatorsContainer.querySelectorAll(".carousel-bullet");
 
         function updateIndicators() {
@@ -152,12 +141,11 @@ function initInicio() {
                 startAutoplay();
             }, 600);
         });
-
     }
 
 
     // ============================================================
-    //  CARRUSEL EVENTOS — AUTOPLAY
+    //  CARRUSEL EVENTOS — AUTOPLAY VERTICAL
     // ============================================================
     const eventos = document.getElementById("carouselEventos");
 
@@ -196,38 +184,79 @@ function initInicio() {
         eventos.addEventListener("scroll", () => {
             stopAutoplay();
             clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                startAutoplay();
-            }, 1500);
+            scrollTimeout = setTimeout(startAutoplay, 1500);
         });
     }
 
+
     // ============================================================
-    //  SLIDER DE TARJETAS EVENTOS
+    //  SLIDER DE TARJETAS EVENTOS (FADE)
     // ============================================================
-    const cards = document.querySelectorAll("#carouselEventos .evento-card");
-    if (cards.length > 0) {
+    const cardsEventos = document.querySelectorAll("#carouselEventos .evento-card");
+    if (cardsEventos.length > 0) {
+
         let index = 0;
         const time = 4000;
 
         function showCard(i) {
-            cards.forEach((card, idx) => {
-                if (idx === i) {
-                    card.style.opacity = "1";
-                    card.style.transform = "scale(1)";
-                } else {
-                    card.style.opacity = "0";
-                    card.style.transform = "scale(0.95)";
-                }
+            cardsEventos.forEach((card, idx) => {
+                card.style.opacity = idx === i ? "1" : "0";
+                card.style.transform = idx === i ? "scale(1)" : "scale(0.95)";
             });
         }
 
         showCard(index);
 
         setInterval(() => {
-            index = (index + 1) % cards.length;
+            index = (index + 1) % cardsEventos.length;
             showCard(index);
         }, time);
     }
+}
+
+
+// ============================================================
+//  RENDER ACTIVIDADES DESDE QUE_HACER
+// ============================================================
+function renderActividadesInicio() {
+    const carrusel = document.getElementById("carouselActividades");
+    if (!carrusel || !window.QUE_HACER) return;
+
+    carrusel.innerHTML = "";
+
+    QUE_HACER.forEach(item => {
+        const card = document.createElement("div");
+
+        card.className = `
+            min-w-[260px] md:min-w-[300px]
+            bg-white rounded-xl shadow-lg overflow-hidden
+            hover:scale-105 transition fade-scroll 
+            snap-start md:snap-center
+        `;
+
+        card.innerHTML = `
+            <img src="${item.fotos[0]}"
+                 class="h-44 w-full object-cover">
+
+            <div class="p-5">
+                <h3 class="text-lg font-bold text-gray-800">
+                    ${item.titulo}
+                </h3>
+
+                <p class="text-sm text-gray-600 mt-2">
+                    ${item.descripcion}
+                </p>
+
+                <button
+                    data-vista="${item.url || ''}"
+                    class="mt-4 text-orange-600 font-semibold
+                           hover:text-orange-800 transition">
+                    Ver más →
+                </button>
+            </div>
+        `;
+
+        carrusel.appendChild(card);
+    });
 }
 
